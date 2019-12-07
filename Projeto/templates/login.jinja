@@ -1,0 +1,25 @@
+{% extends "base.jinja" %}
+
+{% block titulo %}
+    Login
+{% endblock titulo %}
+
+{% block titulo_card %}
+    <h5 class="card-title"> Login </h5>
+{% endblock titulo_card %}
+
+{% block conteudo %}
+    <div class="panel-body">
+        <form action="/ldap/login" method="post">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" placeholder="Digite um email valido" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Enviar</button>
+        </form>
+    </div>
+{% endblock conteudo %}

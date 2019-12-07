@@ -16,7 +16,7 @@ def index():
             jobs.append(client.get_job_info(job['fullname']))
     except Exception as e:
         print(e)
-    
+        jobs = []
     return flask.render_template('jenkins.jinja', jobs=jobs)
 
 @jenkins_routes.route('/build/<string:job_name>')
@@ -43,9 +43,9 @@ def jenkins_update(job_name):
         print(e)
     # Apos o teste de conexcao, se der certo, ele redireciona para o
     # formulario de atualizacao e passa a variavel 'job'
-    return flask.render_template('jenkins_update.jinja', job)
+    return flask.render_template('jenkins_update.jinja', job=job)
 
-@jenkins_routes.route('/rebuild', method=['POST'])
+@jenkins_routes.route('/rebuild', methods=['POST'])
 def jenkins_rebuild():
     data = flask.request.form
     try:

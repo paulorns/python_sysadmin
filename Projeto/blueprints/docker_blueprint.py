@@ -15,7 +15,7 @@ def index():
             'status':container.status
         }
     except Exception as e:
-        flask_app = None # se nao fizer a conexao, nao traz nada
+        flask_app = {} # se nao fizer a conexao, nao traz nada
         print(e)
     finally:
         return flask.render_template('docker.jinja',container=flask_app)
