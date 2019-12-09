@@ -5,6 +5,8 @@ jenkins_routes = flask.Blueprint(name='jenkins', import_name=__name__,url_prefix
 
 @jenkins_routes.route('/')
 def index():
+    if not flask.session['logged']:
+        return flask.redirect(flask.url_for('ldap.index'))
     try:
         # Criando a conexao com o Jenkins
         client = jenkins.Jenkins('http://localhost:8080',username='admin', password='admin')
@@ -21,6 +23,8 @@ def index():
 
 @jenkins_routes.route('/build/<string:job_name>')
 def jenkins_build(job_name):
+    if not flask.session['logged']:
+        return flask.redirect(flask.url_for('ldap.index'))
     try:
         # Criando a conexao com o Jenkins
         client = jenkins.Jenkins('http://localhost:8080',username='admin', password='admin')
@@ -32,6 +36,8 @@ def jenkins_build(job_name):
 
 @jenkins_routes.route('/update/<string:job_name>')
 def jenkins_update(job_name):
+    if not flask.session['logged']:
+        return flask.redirect(flask.url_for('ldap.index'))
     try:
         # Criando a conexao com o Jenkins
         client = jenkins.Jenkins('http://localhost:8080',username='admin', password='admin')
@@ -47,6 +53,8 @@ def jenkins_update(job_name):
 
 @jenkins_routes.route('/rebuild', methods=['POST'])
 def jenkins_rebuild():
+    if not flask.session['logged']:
+        return flask.redirect(flask.url_for('ldap.index'))
     data = flask.request.form
     try:
         # Criando a conexao com o Jenkins

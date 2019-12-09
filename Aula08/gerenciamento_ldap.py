@@ -33,19 +33,19 @@ objectClass = ['top','person','organizationalPerson','inetOrgPerson', 'posixAcco
 
 cn = 'uid=' + user['mail'] + ',dc=example,dc=org'
 
-# print(client.add(cn,objectClass,user))
+print(client.add(cn,objectClass,user))
 
 # Pesquisando um usuario
-email = 'aosom.dequem@cleitonrasta.com.br'
-dn = 'uid=' + email + ',dc=example,dc=org'
+# email = 'aosom.dequem@cleitonrasta.com.br'
+# dn = 'uid=' + email + ',dc=example,dc=org'
 # client.search(dn,'(objectclass=person)',attributes=['cn','sn','userPassword'])
 # print(client.entries)
 
 # Alterando um usuario
-changes = {
-    'cn': [(ldap3.MODIFY_REPLACE, ['xuxa'])],
-    'sn': [(ldap3.MODIFY_REPLACE, ['meneguel'])]
-}
+# changes = {
+#     'cn': [(ldap3.MODIFY_REPLACE, ['xuxa'])],
+#     'sn': [(ldap3.MODIFY_REPLACE, ['meneguel'])]
+# }
 # client.modify(dn, changes)
 # print(client.result)
 

@@ -5,6 +5,8 @@ docker_routes = flask.Blueprint(name='docker', import_name=__name__, url_prefix=
 
 @docker_routes.route('/')
 def index():
+    if not flask.session['logged']:
+        return flask.redirect(flask.url_for('ldap.index'))
     try:
         client = docker.from_env() # Criando a conexao com o docker
         container = client.containers.get('vigorous_pascal') # atribuindo o docker na variavel 'container'
@@ -22,6 +24,8 @@ def index():
 
 @docker_routes.route('/start')
 def start():
+    if not flask.session['logged']:
+        return flask.redirect(flask.url_for('ldap.index'))
     try:
         client = docker.from_env()
         container = client.containers.get('vigorous_pascal')
@@ -32,6 +36,8 @@ def start():
 
 @docker_routes.route('/stop')
 def stop():
+    if not flask.session['logged']:
+        return flask.redirect(flask.url_for('ldap.index'))
     try:
         client = docker.from_env()
         container = client.containers.get('vigorous_pascal')
