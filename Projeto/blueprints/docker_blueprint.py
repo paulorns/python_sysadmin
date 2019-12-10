@@ -5,6 +5,10 @@ docker_routes = flask.Blueprint(name='docker', import_name=__name__, url_prefix=
 
 @docker_routes.route('/')
 def index():
+    if flask.session['logged']:
+        pass
+    else:
+        flask.session['logged'] = False
     if not flask.session['logged']:
         return flask.redirect(flask.url_for('ldap.index'))
     try:
@@ -24,6 +28,10 @@ def index():
 
 @docker_routes.route('/start')
 def start():
+    if flask.session['logged']:
+        pass
+    else:
+        flask.session['logged'] = False
     if not flask.session['logged']:
         return flask.redirect(flask.url_for('ldap.index'))
     try:
@@ -36,6 +44,10 @@ def start():
 
 @docker_routes.route('/stop')
 def stop():
+    if flask.session['logged']:
+        pass
+    else:
+        flask.session['logged'] = False
     if not flask.session['logged']:
         return flask.redirect(flask.url_for('ldap.index'))
     try:
